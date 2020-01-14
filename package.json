@@ -3,6 +3,11 @@
 	"displayName": "worklog",
 	"description": "create a worklog in markdown format",
 	"version": "0.0.1",
+	"publisher": "chaturaloka",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/chaturaloka/vscode-worklog"
+	},
 	"engines": {
 		"vscode": "^1.41.0"
 	},
