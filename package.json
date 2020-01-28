@@ -22,9 +22,29 @@
 		"commands": [
 			{
 				"command": "extension.logWork",
-				"title": "Work Log"
+				"title": "Create a Work log"
 			}
-		]
+		],
+		"menus": {
+			"editor/title": [
+				{
+					"command": "extension.logWork",
+					"group": "createWorkLog"
+				}
+			],
+			"editor/title/context": [
+				{
+					"command": "extension.logWork",
+					"group": "createWorkLog"
+				}
+			],
+			"explorer/context": [
+				{
+					"command": "extension.logWork",
+					"group": "navigation@2"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

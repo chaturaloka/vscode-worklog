@@ -4,31 +4,40 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "worklog" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.logWork', () => {
-		// The code you place here will be executed every time your command is executed
-		if (vscode.workspace.workspaceFolders) {
-			console.log(vscode.workspace.workspaceFolders);
-			let folderName = vscode.workspace.workspaceFolders[0].uri.fsPath;
-			console.log("Current path is: " + folderName);
-			const newFile = folderName + "/" + getNewEntryName();
-			console.log("New File Name is: " + newFile);
-			createMarkdownFile(newFile);
-			vscode.workspace.openTextDocument(newFile).then(doc => vscode.window.showTextDocument(doc));
-			vscode.window.showInformationMessage("Create a new work log");
-		} else {
-			vscode.window.showWarningMessage("No Active Window, Open a pre-existing work log");
+	let disposable = vscode.commands.registerCommand('extension.logWork', function (e) {
+		var folderName = "";
+		try {
+			console.log("Executed from: " + e);
+			if (fs.lstatSync(e.path).isDirectory()) {
+				folderName = e.path;
+			} else {
+				folderName = path.dirname(e.path);
+			}
+		} catch (e) {
+			console.error("Error: " + e);
+			if (e.code === 'ENOENT') {
+				vscode.window.showWarningMessage("No such file exists");
+			} else {
+				vscode.window.showWarningMessage("No Active File/Folder Chosen, Right click on the folder/file where you want to create the new work log");
+			}
 		}
+
+		if (folderName === "" && vscode.workspace.workspaceFolders) {
+			console.log("Path not found, creating a file in the workspace root");
+			console.log(vscode.workspace.workspaceFolders);
+			folderName = vscode.workspace.workspaceFolders[0].uri.fsPath;
+		}
+
+		console.log("Current path is: " + folderName);
+		const newFile = folderName + "/" + getNewEntryName();
+		console.log("New File Name is: " + newFile);
+		createMarkdownFile(newFile);
+		vscode.workspace.openTextDocument(newFile).then(doc => vscode.window.showTextDocument(doc));
+		vscode.window.showInformationMessage("Create a new work log");
 	});
 
 	context.subscriptions.push(disposable);
@@ -49,7 +58,7 @@ function createMarkdownFile(filename: string) {
 		var wstream = fs.createWriteStream(filename);
 		wstream.on('error', function (e) { console.error(e); });
 		wstream.write("# Plan for the day\n\n");
-		wstream.write("[ ] Misc\n\n");
+		wstream.write("- [ ] Misc\n\n");
 		wstream.write("---\n\n");
 		wstream.write("## Misc\n\n");
 		wstream.write("---\n");
