@@ -1,14 +1,10 @@
-# worklog README
+# README
 
 A simple extension to create a new markdown file with a pre-defined content with the filename format as 'YYYY_MM_DD_Day.md'
 
 ## Features
 
-- WIP
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Create a worklog with the filename format as 'YYYY_MM_DD_Day.md' with a boiler plate markdown(any format) content
 
 ## Requirements
 
@@ -29,7 +25,7 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-The new file is created under the root of the workspace instead of current/spefied folder
+N/A
 
 ## Release Notes
 
@@ -39,5 +35,10 @@ Users appreciate release notes as you update your extension.
 
 - Creates a new markdown file with hardcoded content at the root of the workspace
 
----
+### 0.0.2 (Development)
 
+- Adds right click menu option to create a work log
+- Creates a new markdown file with the hardcoded content at the folder in which the right click is performed
+- Creates a new markdown file with hardcoded content at the root of the workspace if command exectued using cmd + shift + p
+
+---
