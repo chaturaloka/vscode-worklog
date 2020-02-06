@@ -45,9 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 function getNewEntryName() {
 	let date_ob = new Date();
-	return date_ob.getFullYear() + "_"
-		+ date_ob.getMonth() + 1 + "_"
-		+ date_ob.getDate() + "_"
+	return date_ob.toISOString().substr(0, 10).replace(/-/g, "_") + "_"
 		+ date_ob.toLocaleString('en-US', {
 			weekday: 'long'
 		}) + ".md";
