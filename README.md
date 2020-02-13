@@ -8,7 +8,7 @@ A simple extension to create a new markdown file with a pre-defined content with
 
 ## Requirements
 
-So far, no external depedencies
+So far, No external depedencies
 
 ## Extension Settings
 
@@ -29,16 +29,18 @@ N/A
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.3 (Development)
 
-### 0.0.1 (Development)
-
-- Creates a new markdown file with hardcoded content at the root of the workspace
+- Fixes the date generation in the format: 'YYYY_MM_DD_Day.md', Fixes the bug in date generation format using the proper javascript api
 
 ### 0.0.2 (Development)
 
 - Adds right click menu option to create a work log
 - Creates a new markdown file with the hardcoded content at the folder in which the right click is performed
 - Creates a new markdown file with hardcoded content at the root of the workspace if command exectued using cmd + shift + p
+
+### 0.0.1 (Development)
+
+- Creates a new markdown file with hardcoded content at the root of the workspace
 
 ---
