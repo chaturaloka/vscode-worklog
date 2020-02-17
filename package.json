@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "worklog",
 	"description": "create a worklog in markdown format",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "chaturaloka",
 	"repository": {
 		"type": "git",
@@ -44,6 +44,25 @@
 					"group": "navigation@2"
 				}
 			]
+		},
+		"configuration": {
+			"title": "WorkLog",
+			"properties": {
+				"WorkLog.plan": {
+					"type": [
+						"array",
+						"null"
+					],
+					"default": [
+						"# Plan for the day\n\n",
+						"- [ ] Misc\n\n",
+						"---\n\n",
+						"## Misc\n\n",
+						"---\n"
+					],
+					"description": "Specifies the content of the Plan for the day"
+				}
+			}
 		}
 	},
 	"scripts": {

@@ -8,20 +8,13 @@ A simple extension to create a new markdown file with a pre-defined content with
 
 ## Requirements
 
-So far, no external depedencies
+So far, No external depedencies
 
 ## Extension Settings
 
-- Plan to add the 'content' of the markdown file to a template file.
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-- `myExtension.enable`: enable/disable this extension
-- `myExtension.thing`: set to `blah` to do something
+- `WorkLog.plan`: boiler plate content that will be written to the newly created worklog
 
 ## Known Issues
 
@@ -29,16 +22,25 @@ N/A
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.4 (Development)
 
-### 0.0.1 (Development)
+- Adds new configuration 'WorkLog.plan' to the extension with a default content
+- Reads from the configuration if exists and writes to the newly created worklog
+- Writes simple hardcoded content if the configuration is empty
+- Shows appropriate error message while creating a work log if there's already an existing worklog with the same title
 
-- Creates a new markdown file with hardcoded content at the root of the workspace
+### 0.0.3 (Development)
+
+- Fixes the date generation in the format: 'YYYY_MM_DD_Day.md', Fixes the bug in date generation format using the proper javascript api
 
 ### 0.0.2 (Development)
 
 - Adds right click menu option to create a work log
 - Creates a new markdown file with the hardcoded content at the folder in which the right click is performed
 - Creates a new markdown file with hardcoded content at the root of the workspace if command exectued using cmd + shift + p
+
+### 0.0.1 (Development)
+
+- Creates a new markdown file with hardcoded content at the root of the workspace
 
 ---
