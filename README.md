@@ -12,22 +12,22 @@ So far, No external depedencies
 
 ## Extension Settings
 
-- Plan to add the 'content' of the markdown file to a template file.
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-- `myExtension.enable`: enable/disable this extension
-- `myExtension.thing`: set to `blah` to do something
+- `WorkLog.plan`: boiler plate content that will be written to the newly created worklog
 
 ## Known Issues
 
 N/A
 
 ## Release Notes
+
+### 0.0.4 (Development)
+
+- Adds new configuration 'WorkLog.plan' to the extension with a default content
+- Reads from the configuration if exists and writes to the newly created worklog
+- Writes simple hardcoded content if the configuration is empty
+- Shows appropriate error message while creating a work log if there's already an existing worklog with the same title
 
 ### 0.0.3 (Development)
 
