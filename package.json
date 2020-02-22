@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "worklog",
 	"description": "create a worklog in markdown format",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"publisher": "chaturaloka",
 	"repository": {
 		"type": "git",
