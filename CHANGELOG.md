@@ -9,6 +9,10 @@ This is based on [Keep a Changelog](http://keepachangelog.com/).
 - N/A
 - Any feedback is more than welcome
 
+### 0.0.6 (Development)
+
+- Fixed empty content bug while creating the worklog by writing the content array using loops
+
 ### 0.0.5 (Development)
 
 - Created CHANGELOG document with proper release notes that can be showed in the vscode marketplace
