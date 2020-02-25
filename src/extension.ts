@@ -52,26 +52,19 @@ function getNewEntryName() {
 }
 
 function createMarkdownFile(filename: string) {
-
-	var content: Array<string> = vscode.workspace.getConfiguration('WorkLog').get('plan') || [];
-	if (content.length === 0) {
-
-	} else {
-		console.log(content);
-		content.forEach(function (val, index) {
-			console.log(val);
-		});
-	}
-
 	if (!fs.existsSync(filename)) {
 		var wstream = fs.createWriteStream(filename);
 		wstream.on('error', function (e) { console.error(e); });
-		wstream.write(content);
-		// wstream.write("# Plan for the day\n\n");
-		// wstream.write("- [ ] Misc\n\n");
-		// wstream.write("---\n\n");
-		// wstream.write("## Misc\n\n");
-		// wstream.write("---\n");
+		var content: Array<string> = vscode.workspace.getConfiguration('WorkLog').get('plan') || [];
+		if (content.length === 0) {
+			wstream.write("# Plan for the day\n\n");
+			wstream.write("---\n");
+		} else {
+			content.forEach(function (val, index) {
+				console.log(val);
+				wstream.write(val);
+			});
+		}
 		wstream.end();
 	}
 }
