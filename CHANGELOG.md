@@ -9,6 +9,10 @@ This is based on [Keep a Changelog](http://keepachangelog.com/).
 - N/A
 - Any feedback is more than welcome
 
+### 0.0.7 (Development)
+
+- Updated Typescript version to the latest and fixed compilation warnings
+
 ### 0.0.6 (Development)
 
 - Fixed empty content bug while creating the worklog by writing the content array using loops
