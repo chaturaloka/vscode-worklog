@@ -17,9 +17,9 @@ export function activate(context: vscode.ExtensionContext) {
 			} else {
 				folderName = path.dirname(e.path);
 			}
-		} catch (e) {
-			console.error("Error: " + e);
-			if (e.code === 'ENOENT') {
+		} catch (err: any) {
+			console.error("Error: " + err);
+			if (err.code === 'ENOENT') {
 				vscode.window.showWarningMessage("No such file exists");
 			} else {
 				vscode.window.showWarningMessage("No Active File/Folder Chosen, Right click on the folder/file where you want to create the new work log");

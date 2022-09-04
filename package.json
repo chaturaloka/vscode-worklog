@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "0.0.6",
+	"version": "0.0.7",
 	"publisher": "chaturaloka",
 	"repository": {
 		"type": "git",
@@ -79,7 +79,7 @@
 		"@types/vscode": "^1.41.0",
 		"glob": "^7.1.5",
 		"mocha": "^7.1.1",
-		"typescript": "^3.6.4",
+		"typescript": "^4.8.2",
 		"tslint": "^5.20.0",
 		"@vscode/test-electron": "^2.1.5"
 	}
