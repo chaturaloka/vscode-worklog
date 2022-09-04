@@ -1,7 +1,7 @@
 {
 	"name": "worklog",
-	"displayName": "worklog",
-	"description": "create a worklog in markdown format",
+	"displayName": "Worklog",
+	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
 	"version": "0.0.6",
 	"publisher": "chaturaloka",
 	"repository": {
@@ -81,6 +81,6 @@
 		"mocha": "^7.1.1",
 		"typescript": "^3.6.4",
 		"tslint": "^5.20.0",
-		"vscode-test": "^1.2.2"
+		"@vscode/test-electron": "^2.1.5"
 	}
 }
