@@ -24,12 +24,9 @@ steps:
 - script: |
     npm install -g vsce
     vsce package
-  displayName: 'Package the plugin'
+    vsce publish -p $MARKET_KEY --packagePath worklog-0.0.7.vsix
+    env:
+      MARKET_KEY: $(VSMARKETPLACE_PAT)
+  displayName: 'Package the plugin & Publish'
 
-- task: PublishVisualStudioExtension@3
-  inputs:
-    connectedServiceName: 'Visual Studio Marketplace Connection'
-    vsixFile: '$(Build.SourcesDirectory)/worklog-0.0.7.vsix'
-    manifestFile: '$(Build.SourcesDirectory)/publishManifest.json'
-    publisherId: 'chaturaloka'
-  displayName: 'Publish plugin to Visual Studio Marketplace'
+
