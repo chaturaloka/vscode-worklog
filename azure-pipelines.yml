@@ -26,6 +26,11 @@ steps:
     vsce package
   displayName: 'Package the plugin'
 
+- script: |
+    pwd
+    ls
+  displayName: 'List the files after packaging'
+
 - task: PublishVisualStudioExtension@3
   inputs:
     connectedServiceName: 'Visual Studio Marketplace Connection'
