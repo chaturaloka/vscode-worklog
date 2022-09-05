@@ -30,3 +30,6 @@ steps:
 - script: |
     npm run test
   displayName: 'Run unit tests'
+  env:
+    DISPLAY: ':99.0'
+
