@@ -14,12 +14,17 @@ steps:
 - task: NodeTool@0
   inputs:
     versionSpec: '16.x'
-  displayName: 'Install Node.js'
+  displayName: 'Install Node.js 16.x'
 
 - script: |
     npm install
     npm run compile
-  displayName: 'npm install and compile'
+  displayName: 'Install dependencies and compile'
+
+- script: |
+    npm install vsce
+    vsce package
+  displayName: 'Package the plugin'
 
 - task: PublishVisualStudioExtension@3
   inputs:
@@ -27,3 +32,4 @@ steps:
     vsixFile: '$(Build.SourcesDirectory)\worklog-0.0.7.vsix'
     manifestFile: '$(Build.SourcesDirectory)\publishManifest.json'
     publisherId: 'chaturaloka'
+  displayName: 'Publish plugin to Visual Studio Marketplace'
