@@ -22,7 +22,7 @@ steps:
   displayName: 'Install dependencies and compile'
 
 - script: |
-    npm install vsce
+    npm install -g vsce
     vsce package
   displayName: 'Package the plugin'
 
