@@ -1,4 +1,5 @@
 # Node.js
+
 # Build a general Node.js project with npm.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
@@ -19,3 +20,10 @@ steps:
     npm install
     npm run compile
   displayName: 'npm install and compile'
+
+- task: PublishVisualStudioExtension@3
+  inputs:
+    connectedServiceName: 'Visual Studio Marketplace Connection'
+    vsixFile: '$(Build.SourcesDirectory)\worklog-0.0.7.vsix'
+    manifestFile: '$(Build.SourcesDirectory)\publishManifest.json'
+    publisherId: 'chaturaloka'
