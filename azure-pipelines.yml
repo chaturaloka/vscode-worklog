@@ -25,8 +25,8 @@ steps:
     npm install -g vsce
     vsce package
     vsce publish -p $MARKET_KEY --packagePath worklog-0.0.7.vsix
-    env:
-      MARKET_KEY: $(VSMARKETPLACE_PAT)
+  env:
+    MARKET_KEY: $(VSMARKETPLACE_PAT)
   displayName: 'Package the plugin & Publish'
 
 
