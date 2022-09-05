@@ -26,15 +26,10 @@ steps:
     vsce package
   displayName: 'Package the plugin'
 
-- script: |
-    pwd
-    ls
-  displayName: 'List the files after packaging'
-
 - task: PublishVisualStudioExtension@3
   inputs:
     connectedServiceName: 'Visual Studio Marketplace Connection'
-    vsixFile: '$(Build.SourcesDirectory)\worklog-0.0.7.vsix'
-    manifestFile: '$(Build.SourcesDirectory)\publishManifest.json'
+    vsixFile: '$(Build.SourcesDirectory)/worklog-0.0.7.vsix'
+    manifestFile: '$(Build.SourcesDirectory)/publishManifest.json'
     publisherId: 'chaturaloka'
   displayName: 'Publish plugin to Visual Studio Marketplace'
