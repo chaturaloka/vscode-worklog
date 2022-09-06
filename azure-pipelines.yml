@@ -21,7 +21,28 @@ steps:
     npm run compile
   displayName: 'Install dependencies and compile'
 
+- bash: |
+    PACKAGE_VERSION=$(node -p "require('./package').version")
+    echo "$PACKAGE_VERSION" > version.txt
+  displayName: "Get package version"
+
 - script: |
     npm install -g vsce
     vsce package
   displayName: 'Package the plugin'
+
+# Choose files to publish
+- task: CopyFiles@2
+  displayName: Stage VSIX for publishing
+  inputs:
+    contents: |-
+      *.vsix
+      version.txt
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+# Publish files as an artifact
+- task: PublishPipelineArtifact@1
+  displayName: Publish VSIX
+  inputs:
+    artifact: worklog-vscode-extension
+    targetPath: $(Build.ArtifactStagingDirectory)
