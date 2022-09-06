@@ -25,7 +25,7 @@ steps:
     PACKAGE_VERSION=$(node -p "require('./package').version")
     npm install -g vsce
     vsce package
-    vsce publish -p $MARKET_KEY --packagePath worklog-$PACKAGE_VERSION.vsix
+    # vsce publish -p $MARKET_KEY --packagePath worklog-$PACKAGE_VERSION.vsix
   env:
     MARKET_KEY: $(VSMARKETPLACE_PAT)
   displayName: 'Package the plugin & Publish'
