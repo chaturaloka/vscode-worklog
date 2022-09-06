@@ -30,4 +30,12 @@ steps:
     MARKET_KEY: $(VSMARKETPLACE_PAT)
   displayName: 'Package the plugin & Publish'
 
+- task: GenerateReleaseNotes@0
+  inputs:
+    FromBuildId: '$(Build.BuildId)'
+    ToBuildId: "20220905.14"
+    ReleaseNotesPath: 'GeneratedNotes'
+    ReleaseNotesFile: 'ReleaseNotes.md'
+    Test: false
+
 
