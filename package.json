@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"publisher": "chaturaloka",
 	"icon": "worklog-md-icon.png",
 	"repository": {
@@ -10,13 +10,10 @@
 		"url": "https://github.com/chaturaloka/vscode-worklog"
 	},
 	"engines": {
-		"vscode": "^1.41.0"
+		"vscode": "^1.81.0"
 	},
 	"categories": [
 		"Other"
-	],
-	"activationEvents": [
-		"onCommand:extension.logWork"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -74,14 +71,16 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.7",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.41.0",
-		"glob": "^7.1.5",
-		"mocha": "^10.2.0",
-		"typescript": "^4.8.2",
-		"tslint": "^5.20.0",
-		"@vscode/test-electron": "^2.1.5"
+		"@types/minimatch": "^5.1.2",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^18.15.11",
+		"@types/vscode": "^1.81.0",
+		"@vscode/test-electron": "^2.3.0",
+		"mocha": "^10.0.1",
+		"tslint": "^5.20.1",
+		"typescript": "^5.0.4"
+	},
+	"dependencies": {
+		"chai": "^4.3.7"
 	}
 }

@@ -51,6 +51,7 @@ function getNewEntryName() {
 		}) + ".md";
 }
 
+
 function createMarkdownFile(filename: string) {
 	if (!fs.existsSync(filename)) {
 		var wstream = fs.createWriteStream(filename);
