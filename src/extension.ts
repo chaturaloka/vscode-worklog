@@ -76,7 +76,7 @@ export function activate(context: vscode.ExtensionContext) {
 			try {
 				const newFile = folderName + "/" + getNewBlogPostName(blogTitle);
 				console.log("New File Name is: " + newFile);
-				createMarkdownFile(newFile, "BlogPost", `# ${blogTitle}\n\n---\n`);
+				createMarkdownFile(newFile, "BlogPost", "template", `# ${blogTitle}\n\n---\n`);
 				vscode.workspace.openTextDocument(newFile).then(doc => vscode.window.showTextDocument(doc));
 				vscode.window.showInformationMessage("Created a new blog post");
 			} catch (err: any) {
@@ -107,11 +107,11 @@ function getNewBlogPostName(blogTitle: string = "Blog_title") {
 }
 
 
-function createMarkdownFile(filename: string, configName: string = "WorkLog", defaultContent: string = "# Plan for the day\n\n---\n") {
+function createMarkdownFile(filename: string, configName: string = "WorkLog", propertyName: string = "plan", defaultContent: string = "# Plan for the day\n\n---\n") {
 	if (!fs.existsSync(filename)) {
 		var wstream = fs.createWriteStream(filename);
 		wstream.on('error', function (e) { console.error(e); });
-		var content: Array<string> = vscode.workspace.getConfiguration(configName).get('template') || [];
+		var content: Array<string> = vscode.workspace.getConfiguration(configName).get(propertyName) || [];
 		if (content.length === 0) {
 			wstream.write(defaultContent);
 		} else {
