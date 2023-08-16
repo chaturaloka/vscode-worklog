@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"publisher": "chaturaloka",
 	"icon": "worklog-md-icon.png",
 	"repository": {
