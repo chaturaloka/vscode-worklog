@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "0.1.4",
+	"version": "0.2.1",
 	"publisher": "chaturaloka",
 	"icon": "worklog-md-icon.png",
 	"repository": {
@@ -21,47 +21,64 @@
 			{
 				"command": "extension.logWork",
 				"title": "Create a Work log"
+			},
+			{
+				"command": "extension.createBlogPost",
+				"title": "Create a Blog Post"
 			}
 		],
 		"menus": {
-			"editor/title": [
-				{
-					"command": "extension.logWork",
-					"group": "createWorkLog"
-				}
-			],
-			"editor/title/context": [
-				{
-					"command": "extension.logWork",
-					"group": "createWorkLog"
-				}
-			],
 			"explorer/context": [
 				{
 					"command": "extension.logWork",
-					"group": "navigation@2"
+					"group": "2_workspace"
+				},
+				{
+					"command": "extension.createBlogPost",
+					"group": "2_workspace"
 				}
 			]
 		},
-		"configuration": {
-			"title": "WorkLog",
-			"properties": {
-				"WorkLog.plan": {
-					"type": [
-						"array",
-						"null"
-					],
-					"default": [
-						"# Plan for the day\n\n",
-						"- [ ] Misc\n\n",
-						"---\n\n",
-						"## Misc\n\n",
-						"---\n"
-					],
-					"description": "Specifies the content of the Plan for the day"
+		"configuration": [
+			{
+				"title": "WorkLog",
+				"properties": {
+					"WorkLog.plan": {
+						"type": [
+							"array",
+							"null"
+						],
+						"default": [
+							"# Plan for the day\n\n",
+							"- [ ] Misc\n\n",
+							"---\n\n",
+							"## Misc\n\n",
+							"---\n"
+						],
+						"description": "Specifies the content of the Plan for the day"
+					}
+				}
+			},
+			{
+				"title": "BlogPost",
+				"properties": {
+					"BlogPost.template": {
+						"type": [
+							"array",
+							"null"
+						],
+						"default": [
+							"# Title\n\n",
+							"## Introduction\n\n",
+							"## Body\n\n",
+							"## Conclusion\n\n",
+							"## References\n\n"
+						],
+						"description": "Specifies the content of the Blog Post"
+					}
 				}
 			}
-		}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
