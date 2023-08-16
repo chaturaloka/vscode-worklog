@@ -27,7 +27,7 @@ steps:
   displayName: "Get package version"
 
 - script: |
-    npm install -g vsce
+    npm install -g @vscode/vsce
     vsce package
   displayName: 'Package the plugin'
 
