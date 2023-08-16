@@ -6,7 +6,7 @@ A simple extension to create a new file with a pre-defined content & filename fo
 
 ## Features
 
-![Screenshot](https://github.com/chaturaloka/vscode-worklog/blob/main/Extension_Menu_Shortcut.png)
+![Menu Screenshot](https://raw.githubusercontent.com/chaturaloka/vscode-worklog/main/Extension_Menu_Shortcut.png)
 
 - Create a file for planning and logging work with the filename format as 'YYYY_MM_DD_Day.md' with a boiler plate content (configurable)
 - Create a file for blogging with the given filename format as 'YYYY-MM-DD-Blog_title.mdx' with a boiler plate content (configurable)
