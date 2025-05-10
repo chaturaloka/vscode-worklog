@@ -9,6 +9,14 @@ This is based on [Keep a Changelog](http://keepachangelog.com/).
 - N/A
 - Any feedback is more than welcome
 
+## [1.2.8] - 2025-05-10
+
+- Refactored commands (`logWork`, `createBlogPost`, `moveUnfinishedTasks`) into separate reusable functions and moved them to a new `commands.ts` file for better modularity.
+- Updated `extension.ts` to import and register commands from `commands.ts`.
+- Fixed build issues by ensuring the `extension.cjs` file is properly generated and included in the package.
+- Improved error handling and logging for commands.
+- Added functionality to move unfinished tasks to the next day's worklog file.
+
 ### 0.0.7 (Development)
 
 - Updated Typescript version to the latest and fixed compilation warnings
