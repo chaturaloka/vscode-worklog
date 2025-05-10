@@ -13,8 +13,8 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '16.x'
-  displayName: 'Install Node.js 16.x'
+    versionSpec: '18.x'
+  displayName: 'Install Node.js 18.x'
 
 - script: |
     npm install
