@@ -24,6 +24,7 @@ steps:
 
   - bash: |
       PACKAGE_VERSION=$(node -p "require('./package').version")
+      echo "Version: #PACKAGE_VERSION"
       echo "$PACKAGE_VERSION" > version.txt
     displayName: 'Get package version'
 
