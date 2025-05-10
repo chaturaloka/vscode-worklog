@@ -88,6 +88,23 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 	context.subscriptions.push(blogDisposable);
+
+	vscode.commands.registerCommand('extension.generateWeeklySummary', (e) => {
+		const folderPath = e?.path || vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+		if (!folderPath) {
+			vscode.window.showErrorMessage('No folder selected or workspace found.');
+			return;
+		}
+
+		try {
+			const summaryFilePath = generateWeeklySummary(folderPath);
+			vscode.workspace.openTextDocument(summaryFilePath).then(doc => vscode.window.showTextDocument(doc));
+			vscode.window.showInformationMessage('Weekly summary generated successfully!');
+		} catch (error) {
+			vscode.window.showErrorMessage('Failed to generate weekly summary.');
+			console.error(error);
+		}
+	});
 }
 
 function getNewEntryName() {
@@ -122,6 +139,55 @@ function createMarkdownFile(filename: string, configName: string = "WorkLog", pr
 		}
 		wstream.end();
 	}
+}
+
+function generateWeeklySummary(folderPath: string) {
+	const currentDate = new Date('2025-05-09'); // Replace with dynamic date in production
+	const startOfWeek = new Date(currentDate);
+	startOfWeek.setDate(currentDate.getDate() - currentDate.getDay());
+	const endOfWeek = new Date(startOfWeek);
+	endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+	const files = fs.readdirSync(folderPath);
+	const weeklyFiles = files.filter(file => {
+		const match = file.match(/(\d{4})_(\d{2})_(\d{2})/);
+		if (match) {
+			const fileDate = new Date(`${match[1]}-${match[2]}-${match[3]}`);
+			return fileDate >= startOfWeek && fileDate <= endOfWeek;
+		}
+		return false;
+	});
+
+	let summaryContent = `# Weekly Summary (${startOfWeek.toDateString()} - ${endOfWeek.toDateString()})\n\n`;
+	let completedTasks = '';
+	let pendingTasks = '';
+	let notes = '';
+
+	weeklyFiles.forEach(file => {
+		const filePath = path.join(folderPath, file);
+		const content = fs.readFileSync(filePath, 'utf-8');
+		const lines = content.split('\n');
+
+		lines.forEach(line => {
+			if (line.startsWith('- [x]')) {
+				completedTasks += `${line} (${file})\n`;
+			} else if (line.startsWith('- [ ]')) {
+				pendingTasks += `${line} (${file})\n`;
+			} else {
+				notes += `${line} (${file})\n`;
+			}
+		});
+	});
+
+	summaryContent += `## Completed Tasks:\n${completedTasks || 'None'}\n\n`;
+	summaryContent += `## Pending Tasks:\n${pendingTasks || 'None'}\n\n`;
+	summaryContent += `## Notes:\n${notes || 'None'}\n`;
+
+	const summaryFileName = `${startOfWeek.toISOString().split('T')[0].replace(/-/g, '_')}_to_${endOfWeek.toISOString().split('T')[0].replace(/-/g, '_')}_Summary.md`;
+	const summaryFilePath = path.join(folderPath, summaryFileName);
+
+	fs.writeFileSync(summaryFilePath, summaryContent);
+	return summaryFilePath;
 }
 
 // this method is called when your extension is deactivated
