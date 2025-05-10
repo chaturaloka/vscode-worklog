@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "1.1.0",
+	"version": "1.1.2",
 	"publisher": "chaturaloka",
 	"icon": "worklog-md-icon.png",
 	"repository": {
@@ -30,6 +30,10 @@
 			{
 				"command": "extension.createBlogPost",
 				"title": "Create a Blog Post"
+			},
+			{
+				"command": "extension.generateWeeklySummary",
+				"title": "Generate Weekly Summary"
 			}
 		],
 		"menus": {
@@ -40,6 +44,10 @@
 				},
 				{
 					"command": "extension.createBlogPost",
+					"group": "2_workspace"
+				},
+				{
+					"command": "extension.generateWeeklySummary",
 					"group": "2_workspace"
 				}
 			]
