@@ -32,13 +32,6 @@ This extension contributes the following settings:
 
 N/A
 
-## Contribution Guidelines
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Commit your changes with clear messages.
-4. Submit a pull request.
-
 ## Testing
 
 Run the following commands to test the extension:
@@ -48,12 +41,10 @@ npm run lint
 npm run test
 ```
 
-## Localization
-
-To add localization support, use the `vscode-nls` package.
-
 ## New in Version 1.2.1
 
 - Added functionality to move unfinished tasks to the next day.
 - Improved compatibility with CommonJS modules by renaming the output file to `extension.cjs`.
 - Updated build process to ensure seamless integration with the latest VS Code APIs.
+
+---

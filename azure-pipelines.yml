@@ -19,7 +19,8 @@ steps:
   - script: |
       npm install
       npm run compile
-    displayName: 'Install dependencies and compile'
+      npm run build
+    displayName: 'Install dependencies/compile/build'
 
   - bash: |
       PACKAGE_VERSION=$(node -p "require('./package').version")
