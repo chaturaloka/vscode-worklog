@@ -26,6 +26,7 @@ This extension contributes the following settings:
 
 - `WorkLog.plan`: boiler plate content that will be written to the newly created worklog
 - `BlogPost.template`: boiler plate content that will be written to the newly created blog post
+- `WorkLog.moveUnfinishedTasks`: Automatically moves unfinished tasks to the next day's worklog.
 
 ## Known Issues
 
@@ -50,3 +51,9 @@ npm run test
 ## Localization
 
 To add localization support, use the `vscode-nls` package.
+
+## New in Version 1.2.1
+
+- Added functionality to move unfinished tasks to the next day.
+- Improved compatibility with CommonJS modules by renaming the output file to `extension.cjs`.
+- Updated build process to ensure seamless integration with the latest VS Code APIs.

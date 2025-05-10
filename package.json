@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "1.0.0",
+	"version": "1.2.7",
 	"publisher": "chaturaloka",
 	"icon": "worklog-md-icon.png",
 	"repository": {
@@ -20,7 +20,8 @@
 		"markdown",
 		"vscode-extension"
 	],
-	"main": "./out/extension.js",
+	"main": "./out/extension.cjs",
+	"type": "module",
 	"contributes": {
 		"commands": [
 			{
@@ -30,6 +31,10 @@
 			{
 				"command": "extension.createBlogPost",
 				"title": "Create a Blog Post"
+			},
+			{
+				"command": "extension.moveUnfinishedTasks",
+				"title": "Move Unfinished Tasks to Next Day"
 			}
 		],
 		"menus": {
@@ -40,6 +45,10 @@
 				},
 				{
 					"command": "extension.createBlogPost",
+					"group": "2_workspace"
+				},
+				{
+					"command": "extension.moveUnfinishedTasks",
 					"group": "2_workspace"
 				}
 			]
@@ -94,12 +103,11 @@
 		"test": "node ./out/test/runTest.js",
 		"lint": "eslint . --ext .ts",
 		"format": "prettier --write .",
-		"build": "esbuild src/extension.ts --bundle --outdir=out --platform=node --external:vscode",
+		"build": "esbuild src/extension.ts --bundle --outdir=out --platform=node --external:vscode && mv ./out/extension.js ./out/extension.cjs",
 		"ci": "npm run lint && npm run test",
 		"prepublishOnly": "npm run build",
 		"prepare": "nls-bundle --outDir ./out/nls"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@types/minimatch": "^5.1.2",
 		"@types/mocha": "^10.0.1",
@@ -108,6 +116,7 @@
 		"@typescript-eslint/eslint-plugin": "^8.32.0",
 		"@typescript-eslint/parser": "^8.32.0",
 		"@vscode/test-electron": "^2.5.2",
+		"@vscode/test-web": "0.0.69",
 		"chai": "^4.5.0",
 		"esbuild": "^0.25.4",
 		"eslint": "^9.26.0",
@@ -116,7 +125,6 @@
 		"mocha": "^10.0.1",
 		"prettier": "^3.5.3",
 		"tslint": "^5.20.1",
-		"typescript": "^5.0.4",
-		"@vscode/test-web": "0.0.69"
+		"typescript": "^5.0.4"
 	}
 }

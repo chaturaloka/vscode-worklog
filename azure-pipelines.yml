@@ -5,44 +5,44 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+  - main
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '18.x'
-  displayName: 'Install Node.js 18.x'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Install Node.js 18.x'
 
-- script: |
-    npm install
-    npm run compile
-  displayName: 'Install dependencies and compile'
+  - script: |
+      npm install
+      npm run compile
+    displayName: 'Install dependencies and compile'
 
-- bash: |
-    PACKAGE_VERSION=$(node -p "require('./package').version")
-    echo "$PACKAGE_VERSION" > version.txt
-  displayName: "Get package version"
+  - bash: |
+      PACKAGE_VERSION=$(node -p "require('./package').version")
+      echo "$PACKAGE_VERSION" > version.txt
+    displayName: 'Get package version'
 
-- script: |
-    npm install -g @vscode/vsce
-    vsce package
-  displayName: 'Package the plugin'
+  - script: |
+      npm install -g @vscode/vsce
+      vsce package
+    displayName: 'Package the plugin'
 
-# Choose files to publish
-- task: CopyFiles@2
-  displayName: Stage VSIX for publishing
-  inputs:
-    contents: |-
-      *.vsix
-      version.txt
-    targetFolder: $(Build.ArtifactStagingDirectory)
+  # Choose files to publish
+  - task: CopyFiles@2
+    displayName: Stage VSIX for publishing
+    inputs:
+      contents: |-
+        *.vsix
+        version.txt
+      targetFolder: $(Build.ArtifactStagingDirectory)
 
-# Publish files as an artifact
-- task: PublishPipelineArtifact@1
-  displayName: Publish VSIX
-  inputs:
-    artifact: worklog-vscode-extension
-    targetPath: $(Build.ArtifactStagingDirectory)
+  # Publish files as an artifact
+  - task: PublishPipelineArtifact@1
+    displayName: Publish VSIX
+    inputs:
+      artifact: worklog-vscode-extension
+      targetPath: $(Build.ArtifactStagingDirectory)
