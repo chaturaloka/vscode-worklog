@@ -15,6 +15,11 @@
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"worklog",
+		"markdown",
+		"vscode-extension"
+	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
@@ -55,7 +60,8 @@
 							"## Misc\n\n",
 							"---\n"
 						],
-						"description": "Specifies the content of the Plan for the day"
+						"description": "Specifies the content of the Plan for the day",
+						"markdownDescription": "Specifies the content of the Plan for the day"
 					}
 				}
 			},
@@ -83,21 +89,29 @@
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
+		"watch": "esbuild src/extension.ts --bundle --outdir=out --platform=node --external:vscode --watch",
 		"pretest": "npm run compile",
-		"test": "node ./out/test/runTest.js"
+		"test": "node ./out/test/runTest.js",
+		"lint": "eslint . --ext .ts",
+		"format": "prettier --write .",
+		"build": "esbuild src/extension.ts --bundle --outdir=out --platform=node --external:vscode"
 	},
 	"devDependencies": {
 		"@types/minimatch": "^5.1.2",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "^18.15.11",
 		"@types/vscode": "^1.81.0",
+		"@typescript-eslint/eslint-plugin": "^8.32.0",
+		"@typescript-eslint/parser": "^8.32.0",
 		"@vscode/test-electron": "^2.3.0",
+		"chai": "^4.5.0",
+		"esbuild": "^0.25.4",
+		"eslint": "^9.26.0",
+		"eslint-config-prettier": "^10.1.5",
+		"eslint-plugin-prettier": "^5.4.0",
 		"mocha": "^10.0.1",
+		"prettier": "^3.5.3",
 		"tslint": "^5.20.1",
 		"typescript": "^5.0.4"
-	},
-	"dependencies": {
-		"chai": "^4.3.7"
 	}
 }
