@@ -4,12 +4,12 @@ All notable changes to the "worklog" extension will be documented in this file.
 
 This is based on [Keep a Changelog](http://keepachangelog.com/).
 
-## [Unreleased]
+## 1.5.0 - 2025-05-11
 
-- N/A
-- Any feedback is more than welcome
+- Added a new configuration `WorkLog.includeWeekends` to allow users to include or exclude weekends in work log creation.
+- Updated the `moveUnfinishedTasksCommand` to respect the `WorkLog.includeWeekends` configuration and skip weekends if the setting is disabled.
 
-## [1.3.0] - 2025-05-10
+## 1.3.0 - 2025-05-10
 
 - Refactored commands (`logWork`, `createBlogPost`, `moveUnfinishedTasks`) into separate reusable functions and moved them to a new `commands.ts` file for better modularity.
 - Updated `extension.ts` to import and register commands from `commands.ts`.
@@ -19,7 +19,7 @@ This is based on [Keep a Changelog](http://keepachangelog.com/).
 - Replaced `any` type with `vscode.Uri` and `NodeJS.ErrnoException` for better type safety.
 - Addressed linting issues and improved code readability.
 
-## [1.2.8] - 2025-05-10
+## 1.2.8 - 2025-05-10
 
 - Refactored commands (`logWork`, `createBlogPost`, `moveUnfinishedTasks`) into separate reusable functions and moved them to a new `commands.ts` file for better modularity.
 - Updated `extension.ts` to import and register commands from `commands.ts`.

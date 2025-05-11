@@ -85,7 +85,9 @@ export class Utils {
       console.log(val);
       wstream.write(val);
     });
-    wstream.write('\n---\n');
+    if (newContent.length > 0) {
+      wstream.write('\n---\n');
+    }
     wstream.end();
   }
 

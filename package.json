@@ -2,7 +2,7 @@
 	"name": "worklog",
 	"displayName": "Worklog",
 	"description": "Create a markdown file for worklog with pre-configured boilerplace content",
-	"version": "1.4.6",
+	"version": "1.5.0",
 	"publisher": "chaturaloka",
 	"icon": "worklog-md-icon.png",
 	"repository": {
@@ -71,6 +71,12 @@
 						],
 						"description": "Specifies the content of the Plan for the day",
 						"markdownDescription": "Specifies the content of the Plan for the day"
+					},
+					"WorkLog.includeWeekends": {
+						"type": "boolean",
+						"default": false,
+						"description": "Include weekends in work log creation",
+						"markdownDescription": "Include weekends in work log creation"
 					}
 				}
 			},

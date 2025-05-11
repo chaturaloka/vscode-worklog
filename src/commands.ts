@@ -24,7 +24,17 @@ export function moveUnfinishedTasksCommand(e: vscode.Uri) {
 
     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const today = Utils.getStartOfDay();
+    const includeWeekends = vscode.workspace.getConfiguration('WorkLog').get('includeWeekends', false);
+
+    const isWeekend = (date: Date) => {
+        const day = date.getDay();
+        return day === 0 || day === 6; // Sunday (0) or Saturday (6)
+    };
+
     const tomorrow = new Date(today.getTime() + 86400000);
+    if (!includeWeekends && isWeekend(tomorrow)) {
+        tomorrow.setDate(tomorrow.getDate() + (tomorrow.getDay() === 6 ? 2 : 1));
+    }
 
     const todayFileName = Utils.getFileNameForDate(today, userTimeZone);
     const tomorrowFileName = Utils.getFileNameForDate(tomorrow, userTimeZone);
