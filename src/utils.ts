@@ -5,7 +5,7 @@ export class Utils {
   static showTemporaryWarningMessage(message: string, delay: number = 5000) {
     const warning = vscode.window.showWarningMessage(message, { modal: false });
     setTimeout(() => {
-      warning.then(() => {}); // Allow the message to naturally disappear after the delay
+      warning.then(() => { }); // Allow the message to naturally disappear after the delay
     }, delay);
   }
 
@@ -45,25 +45,48 @@ export class Utils {
     filename: string,
     configName: string = 'WorkLog',
     propertyName: string = 'plan',
-    defaultContent: string = '# Plan for the day\n\n---\n',
+    contentToAppend: string[] = [],
   ) {
-    if (!fs.existsSync(filename)) {
-      var wstream = fs.createWriteStream(filename);
-      wstream.on('error', function (e) {
-        console.error(e);
-      });
-      var content: Array<string> =
-        vscode.workspace.getConfiguration(configName).get(propertyName) || [];
-      if (content.length === 0) {
-        wstream.write(defaultContent);
-      } else {
-        content.forEach(function (val) {
-          console.log(val);
-          wstream.write(val);
-        });
-      }
-      wstream.end();
+    if (fs.existsSync(filename)) {
+      console.log('File already exists:', filename);
+      Utils.showTemporaryWarningMessage(
+        `File already exists: ${filename}`,
+      );
+      return;
     }
+
+    let defaultContent: string = '# Plan for the day\n\n---\n';
+
+    var wstream = fs.createWriteStream(filename);
+    wstream.on('error', function (e) {
+      console.error(e);
+      Utils.showTemporaryWarningMessage(
+        `Error writing to file: ${filename}`,
+      );
+      return;
+    });
+
+    let newContent = contentToAppend.map((line) => line + '\n');
+
+    var content: Array<string> =
+      vscode.workspace.getConfiguration(configName).get(propertyName) || [];
+    if (content.length === 0) {
+      wstream.write(defaultContent);
+      newContent.forEach(function (val) {
+        console.log(val);
+        wstream.write(val);
+      });
+      wstream.end();
+      return;
+    }
+
+    const uniqueContent = Array.from(new Set([...content, ...newContent]));
+    uniqueContent.forEach(function (val) {
+      console.log(val);
+      wstream.write(val);
+    });
+    wstream.write('\n---\n');
+    wstream.end();
   }
 
   static formatDateToISO(date: Date): string {
